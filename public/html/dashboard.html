@@ -62,7 +62,7 @@ Web Address: https://tailwindcomponents.com/component/calendar-ui-with-tailwindc
     </style>
 
     <div class="antialiased sans-serif bg-gray-100 h-screen">
-      <div x-data="appLoad" x-init="[initDate(), getNoOfDays(), getEmployees()]" x-cloak>
+      <div x-data="app()" x-init="[initDate(), getNoOfDays(), getEmployees()]" x-cloak>
         <div class="container mx-auto px-4 py-2 md:py-24">
           <div class="bg-white rounded-lg shadow overflow-hidden">
             <div class="flex items-center justify-between py-2 px-6">
@@ -393,7 +393,7 @@ Web Address: https://tailwindcomponents.com/component/calendar-ui-with-tailwindc
           }
         }
 
-        var appLoad = app();
+        // var appLoad = app();
       </script>
     </div>
 </body>
