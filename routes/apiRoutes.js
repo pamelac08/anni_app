@@ -5,8 +5,38 @@ var passport = require("../config/passport");
 
 module.exports = function (app) {
   // Gets all employees.
-  app.get("/api/employees", function (req, res) {
+  app.get("/api/employeeList", function (req, res) {
     db.Employee.findAll({}).then(function (employees) {
+      res.json(employees);
+    });
+  });
+
+  
+  app.get("/api/sortFirstNameUp", function (req, res) {
+    db.Employee.findAll({
+      order: [
+        ["firstName", "ASC"],
+        ["lastName", "ASC"],
+      ]
+    }).then(function (employees) {
+      res.json(employees);
+    });
+  });
+
+  app.get("/api/sortFirstNameDown", function (req, res) {
+    db.Employee.findAll({
+      order: [
+        ["firstName", "DESC"],
+        ["lastName", "ASC"],
+      ]
+    }).then(function (employees) {
+      res.json(employees);
+    });
+  });
+
+
+  app.get("/api/userList", function (req, res) {
+    db.User.findAll({}).then(function (employees) {
       res.json(employees);
     });
   });

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!--Bootstrap CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> 
+  <link rel="stylesheet" href="../styles/style.css" />
+  <!-- jQuery link -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <link rel="shortcut icon" type="link" href="https://bit.ly/2AnKEBc">
+  <title>Anni | Dashboard</title>
+
+  <style>
+      /* #employee-table th {
+        min-width: 125px;
+        border: 2px solid black;
+        text-align: center;
+        font-size: .85rem;
+      } */
+      /* #employee-table td {
+        min-width: 125px;
+        border: 2px solid gray;
+        font-size: .8rem;
+        text-align: center;
+      } */
+      #caption {
+          text-align: center;
+          font-weight: 600;
+          font-size: 1.5rem;
+      }
+      .arrow-up {
+        width: 0; 
+        height: 0; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid black;
+        margin-bottom: 2px;
+        }
+
+        .arrow-down {
+        width: 0; 
+        height: 0; 
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid black;
+        margin-top: 2px;
+      }
+      .arrow-up.active {
+        border-bottom: 5px solid red;
+      }
+      .arrow-down.active {
+        border-top: 5px solid red;
+      }
+      /* .col-name {
+        float: left;
+      } */
+
+  </style>
+</head>
+
+<body class="font-body">
+  <nav class="flex items-center justify-between flex-wrap bg-teal-900	p-6 sticky top-0 z-40">
+    <div class="flex items-center flex-shrink-0 text-white mr-6">
+      <svg class="fill-current h-35 w-35 mt-4" width="35" height="35" viewBox="0 0 35 35"
+        xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M1 4c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm2 2v12h14V6H3zm2-6h2v2H5V0zm8 0h2v2h-2V0zM5 9h2v2H5V9zm0 4h2v2H5v-2zm4-4h2v2H9V9zm0 4h2v2H9v-2zm4-4h2v2h-2V9zm0 4h2v2h-2v-2z" />
+      </svg>
+      <span class="font-semibold text-xl tracking-tight">Anni Calendar</span>
+    </div>
+    <div class="text-sm lg:flex-grow">
+        
+      <a href="/"
+        class="block mt-4 lg:inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
+        Dashboard
+      </a>
+      <a href="/add"
+        class="block mt-4 lg:inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
+        Add New Employee
+      </a>
+      <a href="/update"
+        class="block mt-4 lg:inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
+        Update Employee
+      </a>
+      <!-- <a href="/employeeList"
+        class="block mt-4 lg:inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
+        All Employee List
+      </a> -->
+      <a href="/logout"
+        class="block mt-4 lg:inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-indigo-500 hover:bg-white mt-4 lg:mt-0">
+        Logout
+      </a>
+    </div>
+  </nav>
+  <br>
+
+  <div class="container">
+
+    <div class="card">
+        <!-- <div class="card-header">
+            <span class="card-header">Current Employees</span>
+            <span class="card-header" id="employee-table-header"></span>
+        </div> -->
+
+        <div class="table">
+            <div id="caption">
+            <caption>List of Employees</caption>
+            </div>
+            <table class="table table-sm table-hover table-responsive" id="employee-table">
+              <thead class="thead-light">
+                <tr>
+                    <th scope="col" class="th-sm"> <div class="col-name">First Name</div>
+                      <div><button class="arrow-up" id="fname-up"></button><br>
+                      <button class="arrow-down" id="fname-down"></button></div></th>
+                    <th scope="col" class="th-sm">Last Name</th>
+
+                    <th scope="col" class="th-sm">Hire Month</th>
+                    <th scope="col" class="th-sm">Hire Date</th>
+                    <th scope="col" class="th-sm">Hire Year</th>
+
+                    <th scope="col" class="th-sm">BD Month</th>
+                    <th scope="col" class="th-sm">BD Day</th>
+
+                    <th scope="col" class="th-sm">Departments</th>
+                    <th scope="col" class="th-sm">Pay</th>
+                    <th scope="col" class="th-sm">Comments</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+        </div>
+      </div>
+  </div>  
+
+
+      <script>
+$(document).ready(function () {
+
+   
+
+
+   function displaySortData(data) {
+
+    $("tbody").empty();
+
+        for (let i = 0; i < data.length; i++) {
+
+            // Create the new row
+            var newRow = $("<tr>").append(
+                        $("<td>").text(data[i].firstName),
+                        $("<td>").text(data[i].lastName),
+
+                        $("<td>").text(data[i].hireDateMonth),
+                        $("<td>").text(data[i].hireDateDay),
+                        $("<td>").text(data[i].hireDateYear),
+
+                        $("<td>").text(data[i].birthdayMonth),
+                        $("<td>").text(data[i].birthdayDay), 
+                            
+                        $("<td>").text(data[i].department),
+                        $("<td>").text(data[i].pay),
+                        $("<td>").text(data[i].comments),
+            );
+
+            // Append the new row to the table
+            $("tbody").append(newRow);
+        };
+   };
+
+   function setActive(selector) {
+  // remove and apply 'active' class to distinguish which column we sorted by
+  $("button").removeClass("active");
+  $(selector).addClass("active");
+}
+
+   $.get("/api/employeeList", function (data) {
+       displaySortData(data);
+  });
+
+  $("#fname-up").on("click", function(event) {
+      $.get("/api/sortFirstNameUp", function (data) {
+        displaySortData(data);
+        setActive("#fname-up");
+      });
+  });
+  $("#fname-down").on("click", function(event) {
+      $.get("/api/sortFirstNameDown", function (data) {
+        displaySortData(data);
+        setActive("#fname-down");
+      });
+  });
+
+
+});
+
+
+        
+      </script>
+   
+</body>
+
+</html>
